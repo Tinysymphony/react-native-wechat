@@ -1,12 +1,13 @@
 "use strict";
 
 import { DeviceEventEmitter, NativeModules } from 'react-native';
-import promisify from 'es6-promisify';
+// import promisify from 'es6-promisify';
+import Promise from 'bluebird';
 import { EventEmitter } from 'events';
 
 let isAppRegistered = false;
 const {WeChat} = NativeModules;
-
+const promisify = Promise.promisify;
 // Event emitter to dispatch request and response from WeChat.
 const emitter = new EventEmitter();
 

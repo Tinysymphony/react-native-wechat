@@ -12,8 +12,6 @@
 #import <React/RCTBridge.h>
 #import <React/RCTLog.h>
 #import <React/RCTImageLoader.h>
-#import <RCTImage/RCTImageUtils.h>
-
 
 // Define error messages
 #define NOT_REGISTERED (@"registerApp required.")
@@ -246,7 +244,7 @@ RCT_EXPORT_METHOD(pay:(NSDictionary *)data
                 } else {
                     WXImageObject *imageObject = [WXImageObject object];
                     imageObject.imageData = UIImagePNGRepresentation(image);
-                    
+
                     [self shareToWeixinWithMediaMessage:aScene
                                                   Title:title
                                             Description:description
@@ -256,7 +254,7 @@ RCT_EXPORT_METHOD(pay:(NSDictionary *)data
                                              ThumbImage:aThumbImage
                                                MediaTag:mediaTagName
                                                callBack:callback];
-                    
+
                 }
             }];
         } else if ([type isEqualToString:RCTWXShareTypeFile]) {
@@ -353,7 +351,7 @@ RCT_EXPORT_METHOD(pay:(NSDictionary *)data
 	if([resp isKindOfClass:[SendMessageToWXResp class]])
 	{
 	    SendMessageToWXResp *r = (SendMessageToWXResp *)resp;
-    
+
 	    NSMutableDictionary *body = @{@"errCode":@(r.errCode)}.mutableCopy;
 	    body[@"errStr"] = r.errStr;
 	    body[@"lang"] = r.lang;
@@ -368,7 +366,7 @@ RCT_EXPORT_METHOD(pay:(NSDictionary *)data
 	    body[@"lang"] = r.lang;
 	    body[@"country"] =r.country;
 	    body[@"type"] = @"SendAuth.Resp";
-    
+
 	    if (resp.errCode == WXSuccess)
 	    {
 	        [body addEntriesFromDictionary:@{@"appid":self.appId, @"code" :r.code}];
